@@ -1,0 +1,249 @@
+.welcomeDiv {
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center center;
+}
+.journeySelector {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  width: 900px;
+  height: 650px;
+  top: 120px;
+  padding-bottom: 30px;
+  left: 50%;
+  justify-content: center;
+  transform: translate(-50%, 0%);
+  background-image: url('../images/parchment.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: 'Tangerine';
+  align-content: center;
+}
+.formSection {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  width: 900px;
+  height: 650px;
+  top: 120px;
+  padding-bottom: 60px;
+  padding-top: 30px;
+  left: 50%;
+  justify-content: center;
+  transform: translate(-50%, 0%);
+  background-image: url('../images/parchment.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: 'Tangerine';
+}
+.formSection .formTitler {
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-size: 45px;
+  letter-spacing: 6px;
+  line-height: 45px;
+  height: 45px;
+  margin-top: 15px;
+  font-family: 'Tangerine';
+}
+.formSection .forgotPasswordDiv {
+  margin: 15px auto;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: black;
+  font-family: 'Tangerine';
+}
+.formSection .forgotPasswordDiv span {
+  color: #14beba;
+}
+.formSection .forgotPasswordDiv span:hover {
+  cursor: pointer;
+}
+.formSection form {
+  display: flex;
+  flex-wrap: wrap;
+  height: 90%;
+  width: 80%;
+  margin: auto;
+  align-content: center;
+  transition: all 1s ease;
+}
+.formSection label {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: center;
+  margin: 10px 0;
+  font-size: 1.4rem;
+  width: 100%;
+  font-family: 'Tangerine';
+  font-size: 35px;
+}
+.formSection input,
+.formSection select,
+.formSection textarea {
+  margin: 5px 0 0;
+  display: block;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  transition: all 0.3s;
+  font-size: 30px;
+  letter-spacing: 0.5px;
+  background-color: transparent;
+  font-family: 'Tangerine';
+  width: 325px;
+}
+.formSection input:-webkit-autofill,
+.formSection input:-webkit-autofill:hover,
+.formSection input:-webkit-autofill:focus,
+.formSection textarea:-webkit-autofill,
+.formSection textarea:-webkit-autofill:hover,
+.formSection textarea:-webkit-autofill:focus,
+.formSection select:-webkit-autofill,
+.formSection select:-webkit-autofill:hover,
+.formSection select:-webkit-autofill:focus {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: transparent!important;
+  background: transparent!important;
+}
+.formSection select {
+  height: 40px;
+  width: 325px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+.formSection select:focus {
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+.formSection button {
+  width: 250px;
+  display: inline-block;
+  padding: 8px 11px;
+  font-size: 35px;
+  border: 0px none;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  color: black;
+  cursor: pointer;
+  margin: 15px auto auto auto;
+  text-align: center;
+  font-family: 'Tangerine';
+  background: transparent;
+}
+@media (max-width: 800px) {
+  .formSection button {
+    font-size: 15px;
+    margin: auto;
+  }
+}
+.formSection button:hover {
+  background-image: none;
+  cursor: url('../images/pixalKnightHand.png'), pointer;
+}
+.formSection .error {
+  font-size: 25px;
+  height: 25px;
+  color: black;
+  margin: 5px 0;
+}
+.formSection pre {
+  font-size: 20px;
+}
+.style1 .dialogSectionFixed {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  width: 900px;
+  height: 250px;
+  bottom: 0px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+  left: 50%;
+  justify-content: center;
+  transform: translate(-50%, 0%);
+  background-image: url('../images/parchmentLong.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: 'Tangerine';
+}
+.style1 .dialogSectionFixed .dialogContent {
+  width: 80%;
+  font-size: 35px;
+  text-align: center;
+}
+@font-face {
+  font-family: 'Tangerine';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/tangerine/v12/IurY6Y5j_oScZZow4VOBDg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Tangerine';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/tangerine/v12/Iurd6Y5j_oScZZow4VO5srNpjA.ttf) format('truetype');
+}
+/*
+ * Global Styles
+ */
+body {
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  background-color: aliceblue;
+}
+button {
+  width: 250px;
+  display: inline-block;
+  padding: 8px 11px;
+  font-size: 35px;
+  border: 0px none;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  color: black;
+  cursor: pointer;
+  margin: 15px auto auto auto;
+  text-align: center;
+  font-family: 'Tangerine';
+  background: transparent;
+  text-decoration: underline solid transparent;
+  transition: text-decoration 1s ease;
+  text-decoration-thickness: 1.5px;
+}
+@media (max-width: 800px) {
+  button {
+    font-size: 15px;
+    margin: auto;
+  }
+}
+button:hover {
+  background-image: none;
+  text-decoration: underline solid Currentcolor;
+  text-decoration-thickness: 1.5px;
+}
