@@ -20,6 +20,7 @@ import home from './components/pages/Home';
 import Dashboard from './components/pages/Dashboard';
 
 
+
 if( localStorage.token ){
 
   setAuthToken( localStorage.token );
@@ -45,6 +46,7 @@ function App() {
           <Switch>
             <Route exact path = '/' component = { home } />
             <Route exact path = '/dashboard' component = { Dashboard } />
+            
           </Switch>
         </Fragment>
       </Router>

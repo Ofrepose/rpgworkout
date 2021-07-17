@@ -195,6 +195,47 @@
   font-size: 35px;
   text-align: center;
 }
+.characterContainer {
+  position: absolute;
+  left: 3%;
+  bottom: 10%;
+}
+.characterContainer .character1 {
+  height: 100px;
+  width: 100px;
+}
+.characterContainer .characterName {
+  width: 100%;
+  font-family: 'Tangerine';
+  text-align: left;
+  font-size: 25px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.characterContainer progress::-webkit-progress-value {
+  background: red;
+}
+.characterContainer progress::-moz-progress-bar {
+  background: red;
+}
+.characterContainer #characterHealth {
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  height: 15px;
+  line-height: 20px;
+}
+.characterContainer #characterExperience {
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  height: 15px;
+  line-height: 20px;
+}
 @font-face {
   font-family: 'Tangerine';
   font-style: normal;
@@ -246,4 +287,7 @@ button:hover {
   background-image: none;
   text-decoration: underline solid Currentcolor;
   text-decoration-thickness: 1.5px;
+}
+.white {
+  color: white;
 }

@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    totalExp: {
+        type: Number,
+        default: 0
+    },
     password: {
         type: String,
         required: true
@@ -32,8 +36,49 @@ const UserSchema = new mongoose.Schema({
     },
     level: {
         type: Number,
-        default: 0
+        default: 1
+    },
+    characterMaxHealth: {
+        type: Number,
+        default: 100
+    },
+    inPushups: {
+        type: Number,
+        default: 0,
+        max: 500,
+        min: 0
+    },
+    inJumpingJacks: {
+        type: Number,
+        default: 0,
+        max: 5000,
+        min: 0
+    },
+    inStepUps: {
+        type: Number,
+        default: 0,
+        max: 500,
+        min: 0
+    },
+    inMountainClimbers: {
+        type: Number,
+        default: 0,
+        max: 500,
+        min: 0
+    },
+    inSquatJumps: {
+        type: Number,
+        default: 0,
+        max: 500,
+        min: 0
+    },
+    inBurpees: {
+        type: Number,
+        default: 0,
+        max: 500,
+        min: 0
     }
+
 
     
 });

@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import { connect, Provider } from 'react-redux';
 import ReactDom from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
 import setAuthToken from '../../utils/setAuthToken';
 import store from '../../store';
@@ -12,6 +12,9 @@ import '../../styles/css/index.css';
 // styles
 import styled from 'styled-components';
 import Background from '../../styles/images/magicCliffs.png';
+
+// Import Character
+import Character1 from '../character1/Character1';
 
 
 
@@ -28,7 +31,8 @@ const placementText = [
     },
     {
         content:'This is a simple application to help encourage sticking with workouts by using rpg mechanics'
-    }
+    },
+    
 ]
 
 if(localStorage.token){
@@ -41,27 +45,50 @@ if(localStorage.token){
 
 function Dashboard(props){
 
+    const history = useHistory();
+
     const [ dialogContainer, setDialogContainer ] = useState(placementText);
     const [ dialogPosition, setDialogPosition ] = useState(0);
+    
+
+    
 
     useEffect( () => {
-        store.dispatch(loadUser());
+        if(props.profile == null){store.dispatch(loadUser());}            
     }, [])
+
+    if( !props.isAuthenticated ){
+        return <Redirect to="/" />
+      }
 
     const dialogController = () =>{
         console.log(dialogContainer.length)
         if( dialogContainer.length > dialogPosition){
             setDialogPosition(dialogPosition+1);
+        }else{
+            console.log('show forms')
+            //  show forms to select character/info/styles
         }
+    }
+
+    const characterController = () => {
+        // This is where we handle the character animation and begin damage dealt / received.
     }
     
     return(
         <Fragment>
+
+
             
             { props.profile == null ? null : (
                 <TopDiv className = 'welcomeDiv'>
 
-                { props.profile.style === 'default' ? (
+                    <Character1 
+                        action = "idle"
+                    />          
+                    
+
+                { props.profile.style === 'default' && props.profile.exp === 0 ? (
                     <section className = 'style1'>
                         <div className = 'dialogSectionFixed'>
                         { dialogContainer.length  > dialogPosition ? (
@@ -71,7 +98,7 @@ function Dashboard(props){
                                 <button onClick = {dialogController}>Next</button>
                                 </Fragment>
                             ):(
-                                <button onClick = ''>Begin your journey</button>
+                                <button onClick = {dialogController}>Begin your journey</button>
                             )}
                         </div>
                         
