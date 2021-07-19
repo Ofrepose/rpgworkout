@@ -7,7 +7,9 @@ import {
     USER_LOADED,
     AUTH_ERROR,
     LOGIN_SUCCESS,
-    LOGIN_FAIL
+    LOGIN_FAIL,
+    INITIALSTATS_SUCCESS,
+    INITIALSTATS_FAIL
   } from '../actions/types';
 
 
@@ -38,6 +40,34 @@ export const loadUser = () => async dispatch => {
         })
     };
 
+}
+
+export const initialStats = ( data ) => async dispatch => {
+    console.log('inside action - initialStats');
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    const body = JSON.stringify( data );
+
+    console.log(body)
+
+    try{
+
+        const res = await axios.post( 'api/user/update/initialInfo', body, config );
+
+        dispatch({
+            type: INITIALSTATS_SUCCESS,
+            payload: res.data
+        });
+        // dispatch(loadUser());
+    }catch( err ){
+        const errors = err.response.data.errors;
+        dispatch({
+            type: INITIALSTATS_FAIL
+        });
+    }
 }
 
 
