@@ -78,6 +78,7 @@ const UserSchema = new mongoose.Schema({
         max: 500,
         min: 0
     }
+    
 
 
     

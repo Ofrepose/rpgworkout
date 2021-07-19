@@ -170,6 +170,10 @@
 .formSection pre {
   font-size: 20px;
 }
+.buttonButNot {
+  font-size: 45px;
+  text-align: center;
+}
 .style1 .dialogSectionFixed {
   display: flex;
   flex-wrap: wrap;

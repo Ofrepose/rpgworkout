@@ -9,6 +9,8 @@ import { loadUser } from '../../actions/auth';
 
 import '../../styles/css/index.css';
 
+import InitialStatsForm from '../forms/InitialStats';
+
 // styles
 import styled from 'styled-components';
 import Background from '../../styles/images/magicCliffs.png';
@@ -68,42 +70,25 @@ function Dashboard(props){
         }else{
             console.log('show forms')
             //  show forms to select character/info/styles
+            
         }
     }
 
     const characterController = () => {
         // This is where we handle the character animation and begin damage dealt / received.
+        
     }
     
     return(
         <Fragment>
-
-
             
             { props.profile == null ? null : (
                 <TopDiv className = 'welcomeDiv'>
 
-                    <Character1 
-                        action = "idle"
-                    />          
-                    
-
-                { props.profile.style === 'default' && props.profile.exp === 0 ? (
-                    <section className = 'style1'>
-                        <div className = 'dialogSectionFixed'>
-                        { dialogContainer.length  > dialogPosition ? (
-                            <Fragment>
-                            <p className = 'dialogContent' id = 'dialogContentBox'>{ dialogContainer[dialogPosition].content }</p>
-                            
-                                <button onClick = {dialogController}>Next</button>
-                                </Fragment>
-                            ):(
-                                <button onClick = {dialogController}>Begin your journey</button>
-                            )}
-                        </div>
-                        
-                    </section>
-                ) : null }
+                { props.profile.exp === 0 ? (
+                    <InitialStatsForm />
+                ): null}
+                
                     
                 </TopDiv>
             )}

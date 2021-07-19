@@ -59,47 +59,6 @@ router.get('/', auth, async (req,res) => {
 
 
 
-
-
-// @route GET api/users/:id
-// @desc Get User by ID
-// @access Public
-
-/*
- * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
- * this searches our user model for a user with id that matches the id in the decoded jwtToken and 
- * returns everything but the password.
- */
-router.get('/:id', auth, async (req, res) => {
-    // Beginning Logs for dev 
-
-    // End Logs for dev
-
-    const thisUser = await User.findById( req.user.id );
-
-    try{
-
-        if( req.params.id.toString() !== thisUser.id.toString() ) {
-
-            return res.status(404).json({ msg: "Not Authorized" });
-
-        };
-
-        res.json( thisUser );
-
-    } catch( err ){
-
-        if( err.kind === 'ObjectId' ) return res.status(400).json({ msg: 'Not a user' });
-
-        res.status(500).send( 'Server Error' );
-    }
-
-});
-
-
-
-
-
 // @route POST api/User
 // @desc create a new User
 // @access Public
@@ -179,6 +138,99 @@ router.post('/', [
 });
 
 
+// @route GET api/users/:id
+// @desc Get User by ID
+// @access Public
+
+/*
+ * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
+ * this searches our user model for a user with id that matches the id in the decoded jwtToken and 
+ * returns everything but the password.
+ */
+router.get('/:id', auth, async (req, res) => {
+    // Beginning Logs for dev 
+
+    // End Logs for dev
+
+    const thisUser = await User.findById( req.user.id );
+
+    try{
+
+        if( req.params.id.toString() !== thisUser.id.toString() ) {
+
+            return res.status(404).json({ msg: "Not Authorized" });
+
+        };
+
+        res.json( thisUser );
+
+    } catch( err ){
+
+        if( err.kind === 'ObjectId' ) return res.status(400).json({ msg: 'Not a user' });
+
+        res.status(500).send( 'Server Error' );
+    }
+
+});
+
+
+
+
+
+
+
+// @route POST api/users/update/initialInfo
+// @desc Edit user info
+// @access Private
+
+/*
+ * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
+ * this searches our user model for a user with id that matches the id in the decoded jwtToken and 
+ * returns everything but the password.
+ */
+router.post('/update/initialInfo', auth, async (req, res) => {4
+    console.log('inside api initialInfo')
+    console.log(req.user.id)
+    try{
+        let userToEdit = await User.findById( req.user.id );
+        if(userToEdit.id.toString() !== req.user.id.toString()){
+            return res.status(404).json({ msg: "Unauthorized" });
+        }
+
+        const{
+            inPushups,
+            inJumpingJacks,
+            inStepUps,
+            inMountainClimbers,
+            inSquatJumps,
+            inBurpees
+        } = req.body;
+
+        let userEdited = {}
+
+        if( inPushups ) userEdited.inPushups = inPushups;
+        if( inJumpingJacks ) userEdited.inJumpingJacks = inJumpingJacks;
+        if( inStepUps ) userEdited.inStepUps = inStepUps;
+        if( inMountainClimbers ) userEdited.inMountainClimbers = inMountainClimbers;
+        if( inSquatJumps ) userEdited.inSquatJumps = inSquatJumps;
+        if( inBurpees ) userEdited.inBurpees = inBurpees;
+
+        userEdited.totalExp = 5;        
+        userEdited.exp = 5;
+       
+
+        userToEdit = await User.findOneAndUpdate({ _id: req.user.id }, { $set: userEdited }, { new: true });
+        
+        return res.json( userToEdit );
+    }
+    catch(err){
+        console.log( err.message );
+        if( err.kind === 'ObjectId' ){
+            return res.status( 400 ).json({ msg: "Err not found" });
+        }
+        res.status( 500 ).send( "Server Error" );
+    }
+})
 
 
 
