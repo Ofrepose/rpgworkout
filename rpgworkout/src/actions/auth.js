@@ -9,7 +9,11 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     INITIALSTATS_SUCCESS,
-    INITIALSTATS_FAIL
+    INITIALSTATS_FAIL,
+    SEND_XP_SUCCESS,
+    SEND_XP_FAIL,
+    SEND_HEALTH_SUCCESS,
+    SEND_HEALTH_FAIL
   } from '../actions/types';
 
 
@@ -40,6 +44,64 @@ export const loadUser = () => async dispatch => {
         })
     };
 
+}
+
+export const sendHealth = ( data ) => async dispatch => {
+    console.log('inside action = send health');
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify( data );
+
+    console.log( body );
+
+    try{
+
+        const res = await axios.post( 'api/user/update/health', body, config);
+
+        dispatch({
+            type: SEND_HEALTH_SUCCESS,
+            payload: res.data
+        });
+    }catch( err ){
+        const errors = err.response.data.errors;
+        dispatch({
+            type: SEND_HEALTH_FAIL,
+            payload: errors
+        });
+    }
+}
+
+export const sendXP = ( data ) => async dispatch =>{
+    console.log('inside action - send xp');
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify( data );
+
+    console.log( body );
+
+    try{
+
+        const res = await axios.post( 'api/user/update/xp', body, config);
+
+        dispatch({
+            type: SEND_XP_SUCCESS,
+            payload: res.data
+        });
+    }catch( err ){
+        const errors = err.response.data.errors;
+        dispatch({
+            type: SEND_XP_FAIL,
+            payload: errors
+        });
+    }
 }
 
 export const initialStats = ( data ) => async dispatch => {

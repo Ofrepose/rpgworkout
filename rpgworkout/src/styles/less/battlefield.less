@@ -1,0 +1,71 @@
+.battlefield{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+
+    .turnControllerContainer{
+        background-image: url('../images/Parchment-Roll.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        
+        width: 200px;
+        position: absolute;
+        left: 50%;
+        top: 30px;
+        transform: translate(-50%, 0);
+
+        .turnController{
+            font-family: 'Tangerine';
+            
+            text-align: center;
+            font-size: 35px;
+            
+            
+            padding-left: 35px;
+            padding-right: 35px;
+            padding: 15px;
+        }
+    }
+
+    
+
+    .battlefieldDialog{
+
+        width: 100%;
+
+        .battlefieldOption{
+            width: 100%;
+
+            .dialogContainer{
+                position: absolute;
+                bottom: 0px;
+                left: 50%;
+                transform: translate(-50%, 0);
+                background-image: url('../images/Worn-Parchment-BG-2.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                width: 500px;
+                height: 400px;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center;
+                .dialog{
+                    font-family: 'Tangerine';
+                    width: 100%;
+                    text-align: center;
+                    font-size: 35px;
+                }
+            }
+
+        }
+
+    }    
+
+}

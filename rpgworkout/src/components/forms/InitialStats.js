@@ -135,11 +135,21 @@ function InitialStats(props){
 
     return(
 
-        <div className = 'formSection'>
+        <div className = 'formSection intro'>
 
             <form onSubmit = { submitData }>
 
-                <div className = 'formTitle'>Initial Stats</div>
+                <div className = 'formTitler'>Initial Stats</div>
+
+                <p className = 'introText'>Welcome to whatever I name this application.
+                    This app has one purpose. To add a little extra meaning behind the workout for people
+                    who are drawn to video games.<br /><br />I hope this will encourage and strengthen your workout routine as
+                    you take your character on their journey (to be determined). <br />
+                    <br />
+                    While it would be super simple to just cheat your way through this game - this is the one game<br />
+                    that in the end - you would truly only be cheating yourself.  <br /><br />
+                    Please answer the following questions so we can talor the workout accordingly:
+                </p>
 
                 { formNumber === 0 ? (
                     <label>

@@ -1,27 +1,54 @@
 .characterContainer{
     position: absolute;
     left: 3%;
-    bottom: 10%;
+    bottom: 3%;
+    // top: 50%;
+    // transform: translate(0%, -50%);
 
     .character1{
+        margin-left: 20px;
+        margin-left: -10px;
+        margin-bottom: -55px;
         height: 100px;
         width: 100px;
         
     }
 
     .characterName{
-        width: 100%;
+        width: 200px;
+        height: 20px;
         font-family: 'Tangerine';
-        text-align: left;
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
         font-size: 25px;
         margin-top: 0px;
         margin-bottom: 0px;
+        background-image: url('../images/Parchment-Scroll-Opaque.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        color: black;
+        
     }
     .characterLvl{
 
     }
 
+    .characterStats{
+        margin-left: 15px;
+    }
+
+    #health{
+        margin-left: 15px;
+    }
+
+    #xp{
+        margin-left: 15px;
+    }
+
     progress::-webkit-progress-value{
+        margin-left: 15px;
         background: red;
     }
     progress::-moz-progress-bar { background: red; }
@@ -31,12 +58,14 @@
         // font-family: 'Tangerine';
         text-align: left;
         font-size: 20px;
+        margin-left: 15px;
         margin-top: 0px;
         margin-bottom: 15px;
         height: 15px;
         line-height: 20px;
     }
     #characterExperience{
+        margin-left: 15px;
         width: 100%;
         // font-family: 'Tangerine';
         text-align: left;
@@ -48,3 +77,90 @@
     }
 }
 
+
+
+
+
+
+
+
+.enemyContainer{
+    position: absolute;
+    right: 3%;
+    top: 10%;
+    transform: translate(0%, -50%);
+
+    .character1{
+        height: 100px;
+        width: 100px;
+        margin-right: -10px;
+        margin-bottom: -55px;
+        
+    }
+
+    
+}
+
+
+.characterInfoContainer{
+    position: absolute;
+    right: 3%;
+    top: calc(211px);
+    transform: translate(0%, -50%);
+    .characterName{
+        width: 200px;
+        height: 20px;
+        font-family: 'Tangerine';
+        text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 25px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        background-image: url('../images/Parchment-Scroll-Opaque.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        color: black;
+        
+    }
+    .characterLvl{
+
+    }
+
+    #health{
+        margin-left: 15px;
+    }
+
+    #xp{
+        margin-left: 15px;
+    }
+
+    progress::-webkit-progress-value{
+        background: red;
+    }
+    progress::-moz-progress-bar { background: red; }
+
+    #characterHealth{
+        margin-left: 15px;
+        width: 100%;
+        // font-family: 'Tangerine';
+        text-align: left;
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 15px;
+        height: 15px;
+        line-height: 20px;
+    }
+    #characterExperience{
+        margin-left: 15px;
+        width: 100%;
+        // font-family: 'Tangerine';
+        text-align: left;
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 5px;
+        height: 15px;
+        line-height: 20px;
+    }
+}
