@@ -10,9 +10,14 @@ import { loadUser } from '../../actions/auth';
 
 //animation tester
 import { SpriteAnimator } from 'react-sprite-animator';
-import Attack1 from '../../styles/images/character1/attack1.png';
+// import Attack1 from '../../styles/images/character1/attack1.png';
 import Attack2 from '../../styles/images/character1/attack2.png';
-import Idle1 from '../../styles/images/character1/idle1Large.png';
+// import Idle1 from '../../styles/images/character1/idle1Large.png';
+import Idle1 from '../../styles/images/character1/knightIdle.png';
+import Attack1 from '../../styles/images/character1/knightAttack1.png';
+import Death from '../../styles/images/character1/knightDeath.png';
+
+
 
 
 
@@ -22,36 +27,38 @@ import Idle1 from '../../styles/images/character1/idle1Large.png';
 
 function Character1(props){
 
-    const [ characterHealth, setCharacterHealth ] = useState(90);
+    
     
     const [ characterAction, setCharacterAction ] = useState('idle');
 
+    
 
-    const handleCharacterAction = (x,timer) => {
-        
-        
-        setCharacterAction(x);
-        setTimeout(function(){
-            setCharacterAction('idle');
-        },timer)
-    }
+
+
+
+    
+
+
+    
 
     return(
+        
         <Fragment>
+            
             <div className = 'characterContainer'>
 
-                { characterAction === 'attack1' ? (
+                { props.characterAction === 'attack1' ? (
                     <SpriteAnimator
                     className = 'character1'
                     sprite = { Attack1 }
-                    width = { 150 }
-                    height = { 111 }
-                    fps ={3}
+                    width = { 474.772 }
+                    height = { 211 }
+                    fps ={2}
                     stopLastFrame ={ true }
-                    startFrame = {1}
+                    startFrame = {0}
                 />
                 ) :
-                characterAction === 'attack2' ? (
+                props.characterAction === 'attack2' ? (
                     <SpriteAnimator
                     className = 'character1'
                     sprite = { Attack2 }
@@ -62,13 +69,24 @@ function Character1(props){
                     startFrame = {1}
                 />
                 ) : 
+                props.characterAction === 'death' ? (
+                    <SpriteAnimator
+                    className = 'character1'
+                    sprite = { Death }
+                    width = { 316.5333 }
+                    height = { 211 }
+                    fps ={3}
+                    stopLastFrame ={ true }
+                    startFrame = {0}
+                />
+                ):
                                   
                     <SpriteAnimator
                     className = 'character1'
                     sprite = { Idle1 }
-                    width = { 150 }
-                    height = { 111 }
-                    fps ={3}
+                    width = { 211 }
+                    height = { 211 }
+                    fps ={12}
                     stopLastFrame ={ false }
                     startFrame = {1}
                 />
@@ -77,16 +95,19 @@ function Character1(props){
             }
 
                 
-
-                <p className = 'characterName white'>{props.profile.name}</p>
-                <progress id="health" value="80" max={props.profile.characterMaxHealth}></progress>
-                <div id = 'characterHealth' className = 'white'>{`${characterHealth}/${props.profile.characterMaxHealth}`}</div>
-                <progress id="xp" value={props.profile.exp} max="100"></progress>
-                <div id = 'characterExperience' className = 'white'>{`lvl:${props.profile.level}`}</div>
+                { props.profile === null || props.profile.characterHealth === undefined ? null : (
+                    <Fragment>
+                    <p className = 'characterName white'>{props.profile.name}</p>
+                    <progress id="health" value={props.profile.characterHealth} max={props.profile.characterMaxHealth}></progress>
+                    <div id = 'characterHealth' className = 'white'>{`${props.profile.characterHealth}/${props.profile.characterMaxHealth}`}</div>
+                    <progress id="xp" value={props.profile.exp} max="100"></progress>
+                    <div id = 'characterExperience' className = 'white'>{`lvl:${props.profile.level}`}</div>
+                    </Fragment>
+                )}
+                
 
             </div>
-            <button onClick = {()=>handleCharacterAction('attack1', 500)}>Attack</button>
-            <button onClick = {()=>handleCharacterAction('attack2',1500)}>Attack2</button>
+            
             
         </Fragment>
     )

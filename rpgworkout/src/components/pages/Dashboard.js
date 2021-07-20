@@ -13,10 +13,12 @@ import InitialStatsForm from '../forms/InitialStats';
 
 // styles
 import styled from 'styled-components';
-import Background from '../../styles/images/magicCliffs.png';
+import Background from '../../styles/images/bg3.png';
 
-// Import Character
-import Character1 from '../character1/Character1';
+// Import BattleGround
+import BattleGround from '../BattleGround';
+
+
 
 
 
@@ -89,9 +91,16 @@ function Dashboard(props){
                     <InitialStatsForm />
                 ): null}
                 
-                    
+                
                 </TopDiv>
             )}
+            { props.profile === null || props.profile.exp === 0 ? null :
+            (
+                <BattleGround profile = {props.profile} />
+            )}
+            
+
+            
 
         </Fragment>
         

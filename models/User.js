@@ -42,6 +42,10 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         default: 100
     },
+    characterHealth:{
+        type: Number,
+        default: 100
+    },
     inPushups: {
         type: Number,
         default: 0,

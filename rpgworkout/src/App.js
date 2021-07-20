@@ -45,8 +45,7 @@ function App() {
         <Fragment>
           <Switch>
             <Route exact path = '/' component = { home } />
-            <Route exact path = '/dashboard' component = { Dashboard } />
-            
+            <Route exact path = '/dashboard' component = { Dashboard } />            
           </Switch>
         </Fragment>
       </Router>
