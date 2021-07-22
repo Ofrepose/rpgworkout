@@ -26,6 +26,10 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    expToNextLevel: {
+        type: Number,
+        default: 30
+    },
     password: {
         type: String,
         required: true

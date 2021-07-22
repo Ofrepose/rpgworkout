@@ -6,6 +6,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import setAuthToken from '../../utils/setAuthToken';
 import store from '../../store';
 import { loadUser } from '../../actions/auth';
+import { getUser } from '../../actions/user';
 
 import '../../styles/css/index.css';
 
@@ -43,6 +44,7 @@ if(localStorage.token){
     console.log('inside set token on app.js')
     // this function sets x-auth-token header to token if in localstorage
     setAuthToken(localStorage.token);
+    loadUser();
   }
 
 
@@ -58,7 +60,9 @@ function Dashboard(props){
     
 
     useEffect( () => {
-        if(props.profile == null){store.dispatch(loadUser());}            
+        console.log(props.profile)
+        if(props.profile == null){store.dispatch(getUser());}
+                 
     }, [])
 
     if( !props.isAuthenticated ){
@@ -115,7 +119,7 @@ function Dashboard(props){
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    profile: state.auth.user
+    profile: state.user.user
 })
 export default connect(mapStateToProps, {})(Dashboard);
 

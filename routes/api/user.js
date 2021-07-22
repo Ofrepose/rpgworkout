@@ -23,7 +23,7 @@ const User = require('../../models/User');
 
 
 /******************************************************************************
- *                          Route - GET api/users    
+ *                          Route - GET api/user    
  *                           Return current User
  *                            access -> Private
  ******************************************************************************/
@@ -66,7 +66,7 @@ router.get('/', auth, async (req,res) => {
 
 
 /******************************************************************************
- *                          Route - POST api/User     
+ *                          Route - POST api/user     
  *                            Create a new User
  *                            access -> Public
  ******************************************************************************/
@@ -151,7 +151,7 @@ router.post('/', [
 
 
 /******************************************************************************
- *                        Route - GET api/users/:id     
+ *                        Route - GET api/user/:id     
  *                              Get User by ID
  *                            access -> Private
  ******************************************************************************/
@@ -193,7 +193,7 @@ router.get('/:id', auth, async (req, res) => {
 
 
 /******************************************************************************
- *                     Route - POST api/users/update/xp     
+ *                     Route - POST api/user/update/xp     
  *                              Edit user info
  *                            access -> Private
  ******************************************************************************/
@@ -243,7 +243,7 @@ router.post('/update/health', auth, async ( req, res ) => {
 
 
 /******************************************************************************
- *                     Route - POST api/users/update/xp    
+ *                     Route - POST api/user/update/xp    
  *                         Edit current user info
  *                            access -> Private
  ******************************************************************************/
@@ -293,7 +293,7 @@ router.post('/update/xp', auth, async ( req, res ) => {
 
 
 /******************************************************************************
- *                 Route - POST api/users/update/initialInfo     
+ *                 Route - POST api/user/update/initialInfo     
  *                         User initial workout data
  *                            access -> Private
  ******************************************************************************/
