@@ -119,8 +119,7 @@ function BattleGround(props){
 
             setTimeout(function(){
                 setEnemyAction('idle');
-            },timer)
-            
+            },timer)      
 
         }
         else{
