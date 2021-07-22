@@ -20,9 +20,11 @@ const bcrypt = require('bcryptjs');
 
 
 
-// @route GET api/auth
-// @desc Auth route
-// @access private
+/******************************************************************************
+ *                          Route - GET api/auth     
+ *                               Auth route
+ *                            access -> Private
+ ******************************************************************************/
 
 /*
  * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
@@ -59,9 +61,12 @@ router.get('/', auth, async (req, res) => {
 
 
 
-// @route POST api/auth
-// @desc Auth route
-// @access private
+
+/******************************************************************************
+ *                          Route - POST api/auth    
+ *                               Auth route
+ *                            access -> Private
+ ******************************************************************************/
 
 /*
  * Gets input and validates input type on server side. 

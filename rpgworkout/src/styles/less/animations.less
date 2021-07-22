@@ -1,0 +1,118 @@
+.fade-out {
+    animation: fadeOut ease 8s;
+    -webkit-animation: fadeOut ease 8s;
+    -moz-animation: fadeOut ease 8s;
+    -o-animation: fadeOut ease 8s;
+    -ms-animation: fadeOut ease 8s;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-o-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+  }
+}
+
+@keyframes slide-up {
+    from {
+      padding-top: 100px;
+      opacity: 1;
+      line-height: 60px;
+      
+    }
+    to {
+      padding-top: 0;
+      opacity: 0;
+      line-height: 25px;
+      
+    }
+  }
+      
+  .slide-up {
+    animation: slide-up 1s;
+  }
+
+  #damageHolder{
+    position: absolute;
+    right: 3%;
+    top: 0%;
+    transform: translate(0%, -50%);
+    width: 200px;
+    z-index: 9999;
+    .damageContent{
+        opacity: 0;
+        animation: slide-up 3s;
+        color: red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 35px;
+        font-family: 'Tangerine';
+        text-align: center;
+        width:100%;
+          
+        
+    }
+  }
+  
+
+  #characterDamageHolder{
+    position: absolute;
+    left: 3%;
+    bottom: 40%;
+    width: 200px;
+    z-index: 9999;
+    .damageContent{
+        opacity: 0;
+        animation: slide-up 3s;
+        color: red;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 35px;
+        font-family: 'Tangerine';
+        text-align: center;
+        width:100%;
+          
+        
+    }
+  }

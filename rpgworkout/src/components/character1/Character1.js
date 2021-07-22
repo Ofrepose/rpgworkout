@@ -2,17 +2,10 @@ import React, {Fragment, useEffect, useState } from 'react';
 import { connect, Provider } from 'react-redux';
 import '../../styles/css/index.css';
 
-import setAuthToken from '../../utils/setAuthToken';
-import store from '../../store';
-import { loadUser } from '../../actions/auth';
-
-
 
 //animation tester
 import { SpriteAnimator } from 'react-sprite-animator';
-// import Attack1 from '../../styles/images/character1/attack1.png';
 import Attack2 from '../../styles/images/character1/attack2.png';
-// import Idle1 from '../../styles/images/character1/idle1Large.png';
 import Idle1 from '../../styles/images/character1/knightIdle.png';
 import Attack1 from '../../styles/images/character1/knightAttack1.png';
 import Death from '../../styles/images/character1/knightDeath.png';
@@ -24,26 +17,23 @@ import Death from '../../styles/images/character1/knightDeath.png';
 
 
 
+/******************************************************************************
+ *                                 Character1     
+ *                   Default Character Model Component                      
+ ******************************************************************************/
 
 function Character1(props){
 
-    
-    
-    const [ characterAction, setCharacterAction ] = useState('idle');
-
-    
 
 
 
 
     
-
-
-    
-
     return(
         
         <Fragment>
+
+            <div id = 'characterDamageHolder'></div>
             
             <div className = 'characterContainer'>
 
@@ -92,7 +82,7 @@ function Character1(props){
                 />
                 
 
-            }
+                }
 
                 
                 { props.profile === null || props.profile.characterHealth === undefined ? null : (
@@ -103,21 +93,30 @@ function Character1(props){
                     <progress id="xp" value={props.profile.exp} max="100"></progress>
                     <div id = 'characterExperience' className = 'white'>{`lvl:${props.profile.level}`}</div>
                     </Fragment>
-                )}
-                
+                )}                
 
-            </div>
-            
+            </div>            
             
         </Fragment>
+
     )
-}
+
+};
+
+
+
+
+
 
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     profile: state.auth.user
-})
+});
+
+
+
+
 
 
 export default connect(mapStateToProps, {})(Character1);;

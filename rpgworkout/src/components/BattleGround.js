@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
-
-import { sendXP, sendHealth } from '../actions/auth';
+import React, { useState } from 'react';
+import { sendXP, sendHealth } from '../actions/user';
 import { connect } from 'react-redux';
 
 import '../styles/css/index.css';
@@ -8,6 +7,9 @@ import '../styles/css/index.css';
 // import characters
 import Character1 from './character1/Character1';
 import Wizard from './enemies/Wizard';
+
+// import damage
+import Damage from './Damage';
 
 
 
@@ -44,6 +46,14 @@ let currentAmount = 0;
 
 
 
+
+/******************************************************************************
+ *                              BattleGround     
+ *                        Handles character battles
+ *      [handleCharacterAction(), handleEnemyAction(), handleEnemyTurn(), 
+ *  chooseExercise(), changeTurn(), hitEnemy(), changePlayerTurnInProgress()]                       
+ ******************************************************************************/
+
 function BattleGround(props){
 
     const characterState = {
@@ -51,7 +61,7 @@ function BattleGround(props){
         health: 0,
         id: props.profile._id
     }
-
+    // setup useState
     const [ characterAction, setCharacterAction ] = useState('idle');
     const [ playerTurnInProgress, setPlayerTurnInProgress ] = useState(false);
     const [ playerTurn, setPlayerTurn ] = useState(true);
@@ -59,6 +69,11 @@ function BattleGround(props){
 
     const [ enemyAction, setEnemyAction ] = useState('idle');
     const [ enemyHealth, setEnemyHealth] = useState(100);
+    // end setup useState
+
+
+
+
 
     const handleCharacterAction = (x,timer) => {        
         
@@ -72,11 +87,17 @@ function BattleGround(props){
                 characterState.exp = 5;
                 console.log(characterState)
                 hitEnemy(5)
+                
                 await props.sendXP(characterState)
             },timer)
         }
         
     }
+
+
+
+
+
 
     const handleEnemyAction = async (x, timer) =>{
         if(x === 'death' || enemyAction === 'death'){
@@ -88,9 +109,19 @@ function BattleGround(props){
             // adjust amount of damage enemy does
             characterState.health = 5;
             await props.sendHealth(characterState);
+
+            // show damage animation
+            const characterDamagerContent = document.createElement('p');
+            characterDamagerContent.classList.add('damageContent');
+            characterDamagerContent.innerText = `5`;
+            document.querySelector('#characterDamageHolder').appendChild(characterDamagerContent);
+            // end show damage animation
+
             setTimeout(function(){
                 setEnemyAction('idle');
             },timer)
+            
+
         }
         else{
             setEnemyAction(x);
@@ -98,7 +129,13 @@ function BattleGround(props){
                 setEnemyAction('idle');
             },timer)
         }
+        
     }
+
+
+
+
+
 
     const handleEnemyTurn = () =>{
         console.log('inside handle enemy turn')
@@ -111,6 +148,10 @@ function BattleGround(props){
         },1500)
         
     }
+
+
+
+
 
 
     const chooseExercise = () => {
@@ -126,7 +167,12 @@ function BattleGround(props){
         return thisExercise;
     
     }
+
     
+    
+
+
+
     const changeTurn = () => {
         console.log(playerTurn)
         if(playerTurn){
@@ -144,28 +190,53 @@ function BattleGround(props){
             console.log('inside !playerTurn in changeTurn')
             return setPlayerTurn(true)
             
-        }
-        
+        }       
         
     }
+
+
+
+
+
 
     const hitEnemy = ( amt ) => {
         if (enemyHealth - amt >= 0){
             setEnemyHealth(enemyHealth - amt)
             console.log(enemyHealth)
+            // show damage animation
+            const damagerContent = document.createElement('p');
+            damagerContent.classList.add('damageContent');
+            damagerContent.innerText = `5`;
+            document.querySelector('#damageHolder').appendChild(damagerContent);
+            // end show damage animation
         }else{
             handleEnemyAction('death');
         }
         
     }
 
+
+
+
+
+
     const changePlayerTurnInProgress = () =>{
         setPlayerTurnInProgress(!playerTurnInProgress);
     }
 
+
+
+
+
+
     const completedExercise = () =>{
-        // send shit to backend includg xp and find amount of expected done
+        // send data to backend includg xp and find amount of expected done
     }
+
+
+
+
+
 
     return(
 
@@ -173,11 +244,12 @@ function BattleGround(props){
             <div className = 'turnControllerContainer'>
                 <div className = 'turnController'>{ playerTurn ? 'Your turn' : 'Enemy Turn'}</div>
             </div>
+
             <Wizard 
             enemyAction = {enemyAction}
             handleEnemyAction = { handleEnemyAction }
             enemyHealth = { enemyHealth }
-            />
+            />            
 
             <Character1 
             characterAction = {characterAction} 
@@ -190,7 +262,6 @@ function BattleGround(props){
 
                     <div className = 'dialogContainer'>
 
-                        {/* <button onClick = {()=>handleCharacterAction('attack1', 500)}>Attack</button> */}
                         { !playerTurn ? (
                             <div className = 'dialog'>
                                 ...waiting for enemy
@@ -204,16 +275,14 @@ function BattleGround(props){
                         ) : (
                             <div className = 'dialog'>
                                 <button onClick = {chooseExercise}>Attack</button>
-                                <button onClick = {()=>handleCharacterAction('death',2500)}>Death</button>
+                                <button onClick = {()=>handleCharacterAction('death',2500)}>Potion</button>
                             </div>
                         )
-                        }
-
-                        {/* <button onClick = {changeTurn}>Change turn</button> */}
+                        }                       
                         
                     </div>
-                </div>
 
+                </div>
 
             </section>
 
@@ -226,10 +295,11 @@ function BattleGround(props){
 
 
 
+
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     user_id: state.auth.user._id
-})
+});
 
 
 

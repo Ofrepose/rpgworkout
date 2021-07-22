@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 
-import { initialStats } from '../../actions/auth';
+import { initialStats } from '../../actions/user';
 import { connect } from 'react-redux';
 
 function InitialStats(props){

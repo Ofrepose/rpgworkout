@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -31,46 +32,7 @@ export default function( state = initialState, action ) {
 
     switch( type ){
 
-        case SEND_HEALTH_SUCCESS:
-            return {
-                ...state,
-                user: payload,
-                loading: false
-            }
-        case SEND_HEALTH_FAIL:
-            return {
-                ...state,
-                error: payload,
-                loading: false
-            }
-
-        case SEND_XP_SUCCESS:
-            return {
-                ...state,
-                user: payload,
-                loading: false
-            }
-        case SEND_XP_FAIL:
-            return{
-                ...state,
-                error:payload,
-                loading: false
-            }
-
-        case INITIALSTATS_SUCCESS:
-            return {
-                ...state,
-                user: payload,
-                loading: false
-            }
-        case INITIALSTATS_FAIL:
-            return {
-                ...state,
-                error: payload,
-                loading: false
-
-            }
-
+        
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
 
@@ -120,7 +82,7 @@ export default function( state = initialState, action ) {
 
         default:
 
-        return state
+            return state
         
 
     }

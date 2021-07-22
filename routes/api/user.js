@@ -5,25 +5,28 @@ const { check, validationResult } = require('express-validator');
 // bcryptjs for encrypting passwords
 const bcrypt = require('bcryptjs');
 
-//Bring in json web jsonwebtoken
+// Bring in json web jsonwebtoken
 const jwt = require('jsonwebtoken');
 
-//bring in config to get the jsonwebtoken that is stored there
+// bring in config to get the jsonwebtoken that is stored there
 const config = require('config')
 
 // get Middleware
 const auth = require('../../middleware/auth');
 
 
-//get Models
+// get Models
 const User = require('../../models/User');
 
 
 
 
-// @route GET api/users
-// @desc User route
-// @access Private
+
+/******************************************************************************
+ *                          Route - GET api/users    
+ *                           Return current User
+ *                            access -> Private
+ ******************************************************************************/
 
 /*
  * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
@@ -59,9 +62,14 @@ router.get('/', auth, async (req,res) => {
 
 
 
-// @route POST api/User
-// @desc create a new User
-// @access Public
+
+
+
+/******************************************************************************
+ *                          Route - POST api/User     
+ *                            Create a new User
+ *                            access -> Public
+ ******************************************************************************/
 
 /*
  * Takes json object and validates values.
@@ -138,9 +146,15 @@ router.post('/', [
 });
 
 
-// @route GET api/users/:id
-// @desc Get User by ID
-// @access Public
+
+
+
+
+/******************************************************************************
+ *                        Route - GET api/users/:id     
+ *                              Get User by ID
+ *                            access -> Private
+ ******************************************************************************/
 
 /*
  * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
@@ -177,9 +191,12 @@ router.get('/:id', auth, async (req, res) => {
 
 
 
-// @route POST api/users/update/xp
-// @desc Edit user info
-// @access Private
+
+/******************************************************************************
+ *                     Route - POST api/users/update/xp     
+ *                              Edit user info
+ *                            access -> Private
+ ******************************************************************************/
 
 /*
  * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
@@ -225,9 +242,11 @@ router.post('/update/health', auth, async ( req, res ) => {
 
 
 
-// @route POST api/users/update/xp
-// @desc Edit user info
-// @access Private
+/******************************************************************************
+ *                     Route - POST api/users/update/xp    
+ *                         Edit current user info
+ *                            access -> Private
+ ******************************************************************************/
 
 /*
  * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
@@ -273,10 +292,11 @@ router.post('/update/xp', auth, async ( req, res ) => {
 
 
 
-
-// @route POST api/users/update/initialInfo
-// @desc Edit user info
-// @access Private
+/******************************************************************************
+ *                 Route - POST api/users/update/initialInfo     
+ *                         User initial workout data
+ *                            access -> Private
+ ******************************************************************************/
 
 /*
  * Get user object and assign to thisUser. Middleware returns a decoded user id inside the jwttoken;
