@@ -91,14 +91,14 @@ function Dashboard(props){
             { props.profile == null ? null : (
                 <TopDiv className = 'welcomeDiv'>
 
-                { props.profile.exp === 0 ? (
+                { props.profile.totalExp === 0 ? (
                     <InitialStatsForm />
                 ): null}
                 
                 
                 </TopDiv>
             )}
-            { props.profile === null || props.profile.exp === 0 ? null :
+            { props.profile === null || props.profile.totalExp === 0 ? null :
             (
                 <BattleGround profile = {props.profile} />
             )}

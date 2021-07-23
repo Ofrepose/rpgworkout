@@ -260,7 +260,7 @@ function InitialStats(props){
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user_id: state.auth.user._id
+    user_id: state.user.user._id
 });
 
 export default connect(mapStateToProps, { initialStats })(InitialStats);

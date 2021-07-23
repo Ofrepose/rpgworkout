@@ -6,12 +6,6 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    INITIALSTATS_SUCCESS,
-    INITIALSTATS_FAIL,
-    SEND_XP_SUCCESS,
-    SEND_XP_FAIL,
-    SEND_HEALTH_SUCCESS,
-    SEND_HEALTH_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -67,7 +61,7 @@ export default function( state = initialState, action ) {
             ...state,
             isAuthenticated: true,
             loading: false,
-            user: payload
+            // user: payload
         }
 
         case AUTH_ERROR:

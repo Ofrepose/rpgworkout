@@ -7,7 +7,10 @@ import {
     SEND_HEALTH_SUCCESS,
     SEND_HEALTH_FAIL,
     GET_USER_SUCCESS,
-    GET_USER_FAIL
+    GET_USER_FAIL,
+    USER_LVLUP_SUCCESS,
+    USER_LVLUP_FAIL,
+    USER_LOADED
 } from '../actions/types';
 
 const initialState = {    
@@ -26,13 +29,29 @@ export default function( state = initialState, action ){
 
     switch( type ){
 
+        case USER_LOADED:
+            return {
+                ...state,
+                loading: false,
+                user: payload
+            }
+
+        case USER_LVLUP_SUCCESS:
+            return {
+                ...state,
+                user: payload,
+                loading: false
+            }
+
         case SEND_HEALTH_SUCCESS:
             return {
                 ...state,
                 user: payload,
                 loading: false
             }
+        
         case SEND_HEALTH_FAIL:
+        case USER_LVLUP_FAIL:
             return {
                 ...state,
                 error: payload,
@@ -40,6 +59,7 @@ export default function( state = initialState, action ){
             }
 
         case SEND_XP_SUCCESS:
+            console.log('sendXP success')
             return {
                 ...state,
                 user: payload,

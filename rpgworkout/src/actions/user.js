@@ -9,7 +9,9 @@ import {
     SEND_HEALTH_SUCCESS,
     SEND_HEALTH_FAIL,
     GET_USER_SUCCESS,
-    GET_USER_FAIL
+    GET_USER_FAIL,
+    USER_LVLUP_SUCCESS,
+    USER_LVLUP_FAIL
   } from '../actions/types';
 
 
@@ -49,6 +51,53 @@ import {
         });
     }
 }
+
+
+
+
+
+/******************************************************************************
+ *                       Route - GET api/user/lvlUp    
+ *                           Level Up Character                       
+ ******************************************************************************/
+
+export const lvlUp = ( data ) => async dispatch => {
+
+    console.log( 'inside action = lvlUp' );
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    // const body = JSON.stringify( data );
+
+    console.log('body')
+    // console.log(body)
+
+    try{
+
+        const res = await axios.get( 'api/user/lvlUp', data, config);
+        console.log('inside try of lvlup action')
+    
+        dispatch({
+            type: USER_LVLUP_SUCCESS,
+            payload: res.data
+        });
+
+    }catch( err ){
+        console.log(err)
+        // const errors = err.response.data.errors;
+
+        dispatch({
+            type: USER_LVLUP_FAIL,
+            payload: err
+        });
+
+    }
+    
+};
 
 
 

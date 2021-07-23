@@ -113,7 +113,7 @@ function Wizard(props){
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    profile: state.auth.user
+    profile: state.user.user
 });
 
 

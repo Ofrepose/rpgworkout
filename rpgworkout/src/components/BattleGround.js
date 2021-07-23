@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { sendXP, sendHealth } from '../actions/user';
+import { sendXP, sendHealth, lvlUp } from '../actions/user';
 import { connect } from 'react-redux';
 
 import '../styles/css/index.css';
@@ -208,6 +208,12 @@ function BattleGround(props){
             damagerContent.innerText = `5`;
             document.querySelector('#damageHolder').appendChild(damagerContent);
             // end show damage animation
+
+            //check if level up available if so do that
+            if(props.profile.expToNextLevel <= props.profile.exp){
+                console.log(characterState)
+                props.lvlUp(characterState);
+            }
         }else{
             handleEnemyAction('death');
         }
@@ -219,7 +225,7 @@ function BattleGround(props){
 
 
 
-    const changePlayerTurnInProgress = () =>{
+    const changePlayerTurnInProgress = () =>{        
         setPlayerTurnInProgress(!playerTurnInProgress);
     }
 
@@ -297,11 +303,11 @@ function BattleGround(props){
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user_id: state.auth.user._id
+    user_id: state.user.user._id
 });
 
 
 
 
 
-export default connect(mapStateToProps, {sendXP, sendHealth})(BattleGround);
+export default connect(mapStateToProps, {sendXP, sendHealth, lvlUp})(BattleGround);
