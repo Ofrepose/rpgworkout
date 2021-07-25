@@ -24,8 +24,8 @@ const User = require('../../models/User');
 
 
 /******************************************************************************
- *                          Route - GET api/user/lvlUp    
- *                           Return current User
+ *                        Route - GET api/user/lvlUp    
+ *                          Level up current user
  *                            access -> Private
  ******************************************************************************/
 
@@ -54,6 +54,12 @@ router.get('/lvlUp', auth, async ( req, res ) => {
             userEdited.expToNextLevel = userToEdit.expToNextLevel * 2;
 
             userEdited.exp = 0;
+            
+            userEdited.strength = userToEdit.strength + 1;
+
+            userEdited.dexterity = userToEdit.dexterity + 1;
+
+            userEdited.characterMaxHealth = userToEdit.characterMaxHealth + (userToEdit.characterMaxHealth * .5);
 
             userToEdit = await User.findOneAndUpdate({ _id: req.user.id }, { $set: userEdited }, { new: true });
 
@@ -247,7 +253,7 @@ router.get('/:id', auth, async (req, res) => {
 
 /******************************************************************************
  *                     Route - POST api/user/update/xp     
- *                              Edit user info
+ *                         Update Character Health
  *                            access -> Private
  ******************************************************************************/
 
@@ -273,8 +279,8 @@ router.post('/update/health', auth, async ( req, res ) => {
 
         let userEdited = {}
 
-        if(userToEdit.characterHealth - health >= 0){
-            userEdited.characterHealth = userToEdit.characterHealth - health;
+        if(userToEdit.characterHealth + health >= 0){
+            userEdited.characterHealth = userToEdit.characterHealth + health;
         }else{
             userEdited.characterHealth = 0;
         }
@@ -297,7 +303,7 @@ router.post('/update/health', auth, async ( req, res ) => {
 
 /******************************************************************************
  *                     Route - POST api/user/update/xp    
- *                         Edit current user info
+ *                              Update user XP
  *                            access -> Private
  ******************************************************************************/
 

@@ -4,6 +4,33 @@
   background-size: cover;
   background-position: center center;
 }
+.welcomeDiv .heroContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 60vh;
+  justify-content: center;
+  align-content: center;
+}
+.welcomeDiv .heroContainer .heroTitle {
+  font-family: 'Tangerine';
+  font-size: 120px;
+  line-height: 240px;
+  height: 140px;
+  letter-spacing: -2px;
+  width: 100%;
+  text-align: center;
+  margin: 0px auto;
+}
+.welcomeDiv .heroContainer .underTitle {
+  font-size: 20px;
+  line-height: 80px;
+  letter-spacing: 2px;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  margin: 0px auto;
+}
 .journeySelector {
   display: flex;
   flex-wrap: wrap;
@@ -27,6 +54,7 @@
   flex-wrap: wrap;
   position: fixed;
   width: 100%;
+  max-width: 1400px;
   height: 100%;
   top: 120px;
   padding-bottom: 60px;
@@ -513,6 +541,76 @@
   font-family: 'Tangerine';
   text-align: center;
   width: 100%;
+}
+.moneySection {
+  position: fixed;
+  right: 6%;
+  bottom: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+.moneySection .moneyIcon {
+  width: 44px;
+  height: 60px;
+  background-image: url('../../styles/images/goldStats.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.moneySection .moneyAmt {
+  padding-left: 15px;
+  font-family: 'Tangerine';
+  font-size: 45px;
+  line-height: 65px;
+}
+.choiceContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.choiceContainer .selectorContainer {
+  background-image: url('../images/Parchment-Scroll-Opaque.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 200px;
+  display: block;
+}
+.choiceContainer .selectorContainer .selectorContent {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  line-height: 2px;
+  font-family: 'Tangerine';
+  text-align: center;
+  font-size: 35px;
+  height: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding: 15px;
+}
+.choiceContainer .selectorContainer:hover {
+  cursor: pointer;
+}
+.radialMenuContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.radialMenuContainer .radialItem {
+  transition: all 0.2s ease-in-out;
+  height: 64px;
+  width: 64px;
+}
+.radialMenuContainer .radialItem:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.radialMenuContainer #battle {
+  background-image: url('../images/fightIcon.png');
 }
 @font-face {
   font-family: 'Tangerine';

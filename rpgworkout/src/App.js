@@ -12,7 +12,8 @@ import setAuthToken from './utils/setAuthToken';
 //redux
 import { Provider } from 'react-redux';
 import store from './store';
-import { loadUser } from './actions/auth';
+import { loadUser, logout } from './actions/auth';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 
 // component imports
@@ -30,12 +31,8 @@ if( localStorage.token ){
 function App() {
 
   useEffect( () => {
-    if( localStorage.token ){
-      
-      store.dispatch( loadUser() )
-      
-    }
-    // store.dispatch( loadUser() )
+
+    store.dispatch( loadUser() )
 
   }, []);
 
@@ -45,7 +42,8 @@ function App() {
         <Fragment>
           <Switch>
             <Route exact path = '/' component = { home } />
-            <Route exact path = '/dashboard' component = { Dashboard } />            
+            <PrivateRoute exact path = '/dashboard' component = { Dashboard } />  
+                     
           </Switch>
         </Fragment>
       </Router>

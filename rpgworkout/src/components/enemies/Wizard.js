@@ -8,6 +8,7 @@ import { SpriteAnimator } from 'react-sprite-animator';
 import Attack1 from '../../styles/images/StrikerAttack1.png';
 import Attack2 from '../../styles/images/character1/attack2.png';
 import Idle1 from '../../styles/images/strikerIdle.png';
+import Death from '../../styles/images/strikerDeath.png';
 
 
 
@@ -62,13 +63,13 @@ function Wizard(props){
                     scale = { .85 }
                 />
                 ) :
-                props.enemyAction === 'attack2' ? (
+                props.enemyAction === 'death' ? (
                     <SpriteAnimator
                     className = 'character1'
-                    sprite = { Attack2 }
-                    width = { 150 }
-                    height = { 111 }
-                    fps ={3}
+                    sprite = { Death }
+                    width = { 211 }
+                    height = { 211 }
+                    fps ={8}
                     stopLastFrame ={ true }
                     startFrame = {1}
                     scale = { .85 }
@@ -94,9 +95,9 @@ function Wizard(props){
             
                 <p className = 'characterName white'> Random Enemy</p>
             
-                <progress id="health" value= { props.enemyHealth } max='100'></progress>
+                <progress id="health" value= { props.enemyHealth } max= {props.enemyMaxHealth}></progress>
             
-                <div id = 'characterExperience' className = 'white'>{`lvl:${props.profile.level}`}</div>
+                {/* <div id = 'characterExperience' className = 'white'>{`lvl:${props.enemyLevel}`}</div> */}
             
             </div>           
             

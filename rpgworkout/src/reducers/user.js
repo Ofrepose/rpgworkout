@@ -10,7 +10,8 @@ import {
     GET_USER_FAIL,
     USER_LVLUP_SUCCESS,
     USER_LVLUP_FAIL,
-    USER_LOADED
+    USER_LOADED,
+    CLEAR_PROFILE
 } from '../actions/types';
 
 const initialState = {    
@@ -96,6 +97,11 @@ export default function( state = initialState, action ){
                 ...state,
                 error: payload,
                 loading: false
+            }
+        case CLEAR_PROFILE:
+            return {
+                ...state,
+                profile: null
             }
 
         default:

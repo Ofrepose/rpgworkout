@@ -19,6 +19,9 @@ import Background from '../../styles/images/bg3.png';
 // Import BattleGround
 import BattleGround from '../BattleGround';
 
+// Import RadialMenu
+import RadialMenu from '../RadialMenu';
+
 
 
 
@@ -41,7 +44,6 @@ const placementText = [
 ]
 
 if(localStorage.token){
-    console.log('inside set token on app.js')
     // this function sets x-auth-token header to token if in localstorage
     setAuthToken(localStorage.token);
     loadUser();
@@ -55,6 +57,7 @@ function Dashboard(props){
 
     const [ dialogContainer, setDialogContainer ] = useState(placementText);
     const [ dialogPosition, setDialogPosition ] = useState(0);
+    const [ radialMenu, setRadialMenu ] = useState(null);
     
 
     
@@ -65,9 +68,6 @@ function Dashboard(props){
                  
     }, [])
 
-    if( !props.isAuthenticated ){
-        return <Redirect to="/" />
-      }
 
     const dialogController = () =>{
         console.log(dialogContainer.length)
@@ -80,12 +80,18 @@ function Dashboard(props){
         }
     }
 
+    const handleRadialClick = (x) =>{
+        setRadialMenu(x);
+    }
+
     const characterController = () => {
         // This is where we handle the character animation and begin damage dealt / received.
         
     }
     
     return(
+
+        props.loading && props.profile == null ? <div>Loading!</div> :
         <Fragment>
             
             { props.profile == null ? null : (
@@ -98,10 +104,22 @@ function Dashboard(props){
                 
                 </TopDiv>
             )}
-            { props.profile === null || props.profile.totalExp === 0 ? null :
+            { props.profile !== null && props.profile.totalExp !== 0 && radialMenu === 'battle' ? 
             (
-                <BattleGround profile = {props.profile} />
-            )}
+                <BattleGround 
+                profile = {props.profile} 
+                handleRadialClick = { handleRadialClick }
+                />
+                
+
+            ) : props.profile !== null && props.profile.totalExp !== 0 && radialMenu === null ? 
+            (
+                <RadialMenu 
+                handleRadialClick = { handleRadialClick }
+                />
+            ) : null
+            
+            }
             
 
             
@@ -119,7 +137,8 @@ function Dashboard(props){
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    profile: state.user.user
+    profile: state.user.user,
+    loading: state.user.loading
 })
 export default connect(mapStateToProps, {})(Dashboard);
 
