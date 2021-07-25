@@ -90,7 +90,7 @@ function Character1(props){
                     <p className = 'characterName white'>{props.profile.name}</p>
                     <progress id="health" value={props.profile.characterHealth} max={props.profile.characterMaxHealth}></progress>
                     <div id = 'characterHealth' className = 'white'>{`${props.profile.characterHealth}/${props.profile.characterMaxHealth}`}</div>
-                    <progress id="xp" value={props.profile.exp} max="100"></progress>
+                    <progress id="xp" value={props.profile.exp} max={props.profile.expToNextLevel}></progress>
                     <div id = 'characterExperience' className = 'white'>{`lvl:${props.profile.level}`}</div>
                     </Fragment>
                 )}                
@@ -111,7 +111,7 @@ function Character1(props){
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    profile: state.auth.user
+    profile: state.user.user
 });
 
 

@@ -22,8 +22,67 @@ const User = require('../../models/User');
 
 
 
+
 /******************************************************************************
- *                          Route - GET api/users    
+ *                        Route - GET api/user/lvlUp    
+ *                          Level up current user
+ *                            access -> Private
+ ******************************************************************************/
+
+router.get('/lvlUp', auth, async ( req, res ) => {
+    // Beginning Logs for dev
+
+    // End Logs for dev
+
+    try{
+
+        
+        let userToEdit = await User.findById( req.user.id );
+
+        if( userToEdit.id.toString() !== req.user.id.toString() ){
+            
+            return res.status( 400 ).json({ msg: "Unauthorized" });
+
+        }
+
+        if( userToEdit.expToNextLevel <= userToEdit.exp ){
+            
+            let userEdited = {}
+
+            userEdited.level = userToEdit.level + 1;
+            
+            userEdited.expToNextLevel = userToEdit.expToNextLevel * 2;
+
+            userEdited.exp = 0;
+            
+            userEdited.strength = userToEdit.strength + 1;
+
+            userEdited.dexterity = userToEdit.dexterity + 1;
+
+            userEdited.characterMaxHealth = userToEdit.characterMaxHealth + (userToEdit.characterMaxHealth * .5);
+
+            userToEdit = await User.findOneAndUpdate({ _id: req.user.id }, { $set: userEdited }, { new: true });
+
+            return res.json( userToEdit );
+
+        }
+
+    }catch( err ){
+        
+        if( err.kind === 'ObjectId' ) return res.status( 400 ).json({ msg: "Unauthorized - err" });
+
+        res.status(500).send( "Server Error" ); 
+
+    }
+
+});
+
+
+
+
+
+/******************************************************************************
+ *                          Route - GET api/user    
  *                           Return current User
  *                            access -> Private
  ******************************************************************************/
@@ -66,7 +125,7 @@ router.get('/', auth, async (req,res) => {
 
 
 /******************************************************************************
- *                          Route - POST api/User     
+ *                          Route - POST api/user     
  *                            Create a new User
  *                            access -> Public
  ******************************************************************************/
@@ -151,7 +210,7 @@ router.post('/', [
 
 
 /******************************************************************************
- *                        Route - GET api/users/:id     
+ *                        Route - GET api/user/:id     
  *                              Get User by ID
  *                            access -> Private
  ******************************************************************************/
@@ -193,8 +252,8 @@ router.get('/:id', auth, async (req, res) => {
 
 
 /******************************************************************************
- *                     Route - POST api/users/update/xp     
- *                              Edit user info
+ *                     Route - POST api/user/update/xp     
+ *                         Update Character Health
  *                            access -> Private
  ******************************************************************************/
 
@@ -220,8 +279,8 @@ router.post('/update/health', auth, async ( req, res ) => {
 
         let userEdited = {}
 
-        if(userToEdit.characterHealth - health >= 0){
-            userEdited.characterHealth = userToEdit.characterHealth - health;
+        if(userToEdit.characterHealth + health >= 0){
+            userEdited.characterHealth = userToEdit.characterHealth + health;
         }else{
             userEdited.characterHealth = 0;
         }
@@ -243,8 +302,8 @@ router.post('/update/health', auth, async ( req, res ) => {
 
 
 /******************************************************************************
- *                     Route - POST api/users/update/xp    
- *                         Edit current user info
+ *                     Route - POST api/user/update/xp    
+ *                              Update user XP
  *                            access -> Private
  ******************************************************************************/
 
@@ -293,7 +352,7 @@ router.post('/update/xp', auth, async ( req, res ) => {
 
 
 /******************************************************************************
- *                 Route - POST api/users/update/initialInfo     
+ *                 Route - POST api/user/update/initialInfo     
  *                         User initial workout data
  *                            access -> Private
  ******************************************************************************/

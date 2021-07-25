@@ -26,6 +26,26 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    expToNextLevel: {
+        type: Number,
+        default: 30
+    },
+    strengthExp:{
+        type: Number,
+        default: 1
+    },
+    expToNextStrength: {
+        type: Number,
+        default: 30
+    },
+    dexterityExp: {
+        type: Number,
+        default: 1
+    },
+    expToNextDexterity: {
+        type: Number,
+        default: 30
+    },
     password: {
         type: String,
         required: true
@@ -43,6 +63,18 @@ const UserSchema = new mongoose.Schema({
         default: 100
     },
     characterHealth:{
+        type: Number,
+        default: 100
+    },
+    strength:{
+        type: Number,
+        default: 1
+    },
+    dexterity: {
+        type: Number,
+        default: 1
+    },
+    Gold: {
         type: Number,
         default: 100
     },

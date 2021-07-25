@@ -7,7 +7,9 @@ import {
     USER_LOADED,
     AUTH_ERROR,
     LOGIN_SUCCESS,
-    LOGIN_FAIL
+    LOGIN_FAIL,
+    CLEAR_PROFILE,
+    LOGOUT
   } from '../actions/types';
 
 
@@ -129,3 +131,18 @@ export const login = ({ email, password }) => async dispatch => {
     }
 
 };
+
+
+
+
+
+/******************************************************************************
+ *                             Route - None     
+ *                          Logout current user                         
+ ******************************************************************************/
+
+export const logout = () => dispatch => {
+    setAuthToken(null);
+    dispatch({ type: CLEAR_PROFILE });
+    dispatch({ type: LOGOUT });
+}
